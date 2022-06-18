@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.weather-search {
+    border: 1px solid #dadde1;
+    background: #fafafa;
+    padding: 15px;
+    margin: 20px auto;
+    border-radius: 10px;
+    max-width: 700px;
+    display: flex;
+    flex-direction: row;
+}
+
+#search-form {
+    display: block;
+    width: 100%;
+    font-weight: 400;
+    margin-bottom: 30px;
+    color: #495057;
+    background-color: #fff;
+    border-radius: 0.25rem;
+    transition: all 150ms ease-in-out;
+}
+
+.mainImage {
+    width: 150px;
+}
+
+.row {
+    display: flex;
+    align-items: flex-end;
+}
+
+.temperature {
+    position: relative;
+    top: 45px;
+    font-size: 42px;
+    color:#043074;
+}
+
+.units {
+    position: relative;
+    top: 25px;
+}
+
+ul {
+    font-size: 19px;
+    list-style: none;
+    margin-bottom: 0px;
+}
+
+#city {
+    color:#043074;
+}
+
+#date {
+    margin-bottom: 70px;
+}
+
+.card-img-top {
+    width: 25px;
+}
+
+.fiveDayWeather {
+    display: flex;
+    flex-direction: column;
+    margin-right: 0px;
+    margin-left: 20px;
+}
+
+.flexbox {
+    width: 600px;
+}
+
+#saturday {
+    padding: 0px;
+}
+
+.row {
+    margin-top: 30px;
+}
+
+div.card:hover {
+     background-color: #ffe9e3;
+}
+
+.card-title {
+    text-align: center;
+}
+
+.temp {
+    margin-left: 10px;
+}

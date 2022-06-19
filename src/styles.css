@@ -93,3 +93,12 @@ div.card:hover {
 .temp {
     margin-left: 10px;
 }
+
+a:link {
+    text-decoration: none;
+}
+
+footer {
+    font-size: 12px;
+    text-align: center;
+}

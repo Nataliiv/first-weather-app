@@ -58,6 +58,14 @@ li {
     text-transform: capitalize;
 }
 
+.clearfix .active {
+    color: #000;
+    cursor: default;
+}
+
+.clearfix .active:hover {
+    text-decoration: none;
+}
 
 a:link {
     text-decoration: none;

@@ -21,23 +21,9 @@ function currentDate(date) {
   return currentTime;
 }
 
-function search(city) {
-  let apiKey = "3743a596ca777c1b75d0b29a0dd4cdfd";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(showTemperature);
-}
 
-function handleSubmit(event) {
-  event.preventDefault();
-  let cityInputElement = document.querySelector("#citysearch");
-  search(cityInputElement.value);
-}
-
-let citySearchForm = document.querySelector("#search-form");
-citySearchForm.addEventListener("submit", handleSubmit);
 
 function showTemperature(response) {
-  console.log(response);
   let temperatureCity = document.querySelector(".temperature");
   let descriptionCity = document.querySelector("#description");
   let humidityCity = document.querySelector("#humidity");
@@ -45,7 +31,9 @@ function showTemperature(response) {
   let date = document.querySelector("#date");
   let iconElement = document.querySelector("#icon");
 
-  temperatureCity.innerHTML = Math.round(response.data.main.temp);
+  celsiusTemperature = response.data.main.temp;
+
+  temperatureCity.innerHTML = Math.round(celsiusTemperature);
   descriptionCity.innerHTML = response.data.weather[0].description;
   humidityCity.innerHTML = response.data.main.humidity;
   windSpeed.innerHTML = Math.round(response.data.wind.speed);
@@ -60,3 +48,45 @@ function showTemperature(response) {
   h1.innerHTML = response.data.name;
 }
 
+function search(city) {
+  let apiKey = "3743a596ca777c1b75d0b29a0dd4cdfd";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showTemperature);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#citysearch");
+  search(cityInputElement.value);
+}
+
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector(".temperature");
+
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5+ 32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  let temperatureElement = document.querySelector(".temperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
+let celsiusTemperature = null;
+
+let citySearchForm = document.querySelector("#search-form");
+citySearchForm.addEventListener("submit", handleSubmit);
+
+let fahrenheitLink = document.querySelector("#fahrenheit");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
+let celsiusLink = document.querySelector("#celsius");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
+
+search("Komotini");

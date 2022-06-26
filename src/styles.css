@@ -22,25 +22,17 @@ body {
     transition: all 150ms ease-in-out;
 }
 
-.mainImage {
-    width: 150px;
-}
-
-.row {
-    display: flex;
-    align-items: flex-end;
-}
-
 .temperature {
     position: relative;
-    top: 45px;
-    font-size: 42px;
+    top: 20px;
+    font-size: 54px;
+    line-height: 1;
     color:#043074;
 }
 
 .units {
     position: relative;
-    top: 25px;
+    top: -8px;
 }
 
 ul {
@@ -57,9 +49,6 @@ ul {
     margin-bottom: 70px;
 }
 
-.row {
-    margin-top: 30px;
-}
 
 a:link {
     text-decoration: none;

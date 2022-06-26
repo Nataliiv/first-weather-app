@@ -54,7 +54,7 @@ li {
     margin-bottom: 70px;
 }
 
-#description {
+#description::first-letter {
     text-transform: capitalize;
 }
 

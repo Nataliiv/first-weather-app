@@ -10,12 +10,19 @@ function currentDate(date) {
   ];
   let currentDay = days[date.getDay()];
   let currentHours = date.getHours();
+  if (currentHours < 10) {
+    currentHours = `0${currentHours}`;
+  }
   let currentMinutes = date.getMinutes();
+  if (currentMinutes < 10) {
+    currentMinutes = `0${currentMinutes}`;
+  }
   let currentTime = `${currentDay} ${currentHours}:${currentMinutes}`;
   return currentTime;
 }
-let date = document.querySelector("#date");
-date.innerHTML = currentDate(new Date());
+
+
+
 
 function searchCity(event) {
   event.preventDefault();
@@ -36,14 +43,16 @@ function showTemperature(response) {
   let descriptionCity = document.querySelector("#description");
   let humidityCity = document.querySelector("#humidity");
   let windSpeed = document.querySelector("#wind");
+  let date = document.querySelector("#date");
 
   temperatureCity.innerHTML = Math.round(response.data.main.temp);
   descriptionCity.innerHTML = response.data.weather[0].description;
   humidityCity.innerHTML = response.data.main.humidity;
   windSpeed.innerHTML = Math.round(response.data.wind.speed);
+  date.innerHTML = currentDate(new Date());
+
   let h1 = document.querySelector("h1");
   h1.innerHTML = response.data.name;
-  console.log(response);
 }
 
 function showPosition(position) {

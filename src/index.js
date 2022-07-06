@@ -21,7 +21,35 @@ function currentDate(date) {
   return currentTime;
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
 
+  let forecastHTML = "";
+  let days = [
+    "Thuesday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+    "Monday",
+  ];
+  days.forEach(function (day) {
+    forecastHTML = 
+    forecastHTML + 
+    `<div class="col-2" style="width: 150px">
+        <div class="weather-forecast-date">${day}</div>
+        <img src="https://ssl.gstatic.com/onebox/weather/64/cloudy.png" 
+              alt="" 
+              width="42px"
+               />
+          <span class="weather-forecast-temperatures-max">20° </span>
+          <span class="weather-forecast-temperatures-min">10° </span>
+      </div>
+      `;
+  });
+  
+  forecastElement.innerHTML = forecastHTML;
+  console.log(forecastHTML);
+}
 
 function showTemperature(response) {
   let temperatureCity = document.querySelector(".temperature");
@@ -90,3 +118,5 @@ let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 search("Komotini");
+
+displayForecast();

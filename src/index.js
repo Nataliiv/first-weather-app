@@ -21,34 +21,46 @@ function currentDate(date) {
   return currentTime;
 }
 
-function displayForecast() {
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", 
+  "Thursday", "Friday", "Saturday"];
+
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = "";
-  let days = [
-    "Thuesday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-    "Monday",
-  ];
-  days.forEach(function (day) {
-    forecastHTML = 
-    forecastHTML + 
-    `<div class="col-2" style="width: 150px">
-        <div class="weather-forecast-date">${day}</div>
-        <img src="https://ssl.gstatic.com/onebox/weather/64/cloudy.png" 
+  
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-2" style="width: 150px">
+        <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
+        <img src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" 
               alt="" 
               width="42px"
                />
-          <span class="weather-forecast-temperatures-max">20° </span>
-          <span class="weather-forecast-temperatures-min">10° </span>
+          <span class="weather-forecast-temperatures-max">${Math.round(forecastDay.temp.max)}° </span>
+          <span class="weather-forecast-temperatures-min">${Math.round(forecastDay.temp.min)}° </span>
       </div>
       `;
+    }
   });
   
   forecastElement.innerHTML = forecastHTML;
-  console.log(forecastHTML);
+}
+
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "3743a596ca777c1b75d0b29a0dd4cdfd";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lat}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function showTemperature(response) {
@@ -74,6 +86,8 @@ function showTemperature(response) {
 
   let h1 = document.querySelector("h1");
   h1.innerHTML = response.data.name;
+
+  getForecast(response.data.coord);
 }
 
 function search(city) {
@@ -119,4 +133,3 @@ celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 search("Komotini");
 
-displayForecast();

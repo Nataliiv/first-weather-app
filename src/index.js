@@ -44,10 +44,10 @@ function displayForecast(response) {
         <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
         <img src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" 
               alt="" 
-              width="42px"
+              width="46px"
                />
-          <span class="weather-forecast-temperatures-max">${Math.round(forecastDay.temp.max)}° </span>
-          <span class="weather-forecast-temperatures-min">${Math.round(forecastDay.temp.min)}° </span>
+          <span class="weather-forecast-temperatures-max">${Math.round(forecastDay.temp.max)}°C </span>/
+          <span class="weather-forecast-temperatures-min">${Math.round(forecastDay.temp.min)}°C </span>
       </div>
       `;
     }
